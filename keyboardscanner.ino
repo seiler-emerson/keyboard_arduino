@@ -29,8 +29,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define KEY_SUSTAINED         4
 #define KEY_SUSTAINED_RESTART 5
 
-#define MIN_TIME_MS   3
-#define MAX_TIME_MS   50
+#define MIN_TIME_MS   3000
+#define MAX_TIME_MS   30000
 #define MAX_TIME_MS_N (MAX_TIME_MS - MIN_TIME_MS)
 
 #define PEDAL_PIN     21
