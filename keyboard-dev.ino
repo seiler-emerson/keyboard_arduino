@@ -22,52 +22,61 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define KEYS_NUMBER 61
 
-#define KEY_OFF               0
-#define KEY_START             1
-#define KEY_ON                2
-#define KEY_RELEASED          3
-#define KEY_SUSTAINED         4
+#define KEY_OFF 0
+#define KEY_START 1
+#define KEY_ON 2
+#define KEY_RELEASED 3
+#define KEY_SUSTAINED 4
 #define KEY_SUSTAINED_RESTART 5
 
-#define MIN_TIME_MS   3000
-#define MAX_TIME_MS   30000
+// #define MIN_TIME_MS   7
+// #define MAX_TIME_MS   70
+#define MIN_TIME_MS 5
+#define MAX_TIME_MS 50
+
+// #define MIN_TIME_MS   6
+// #define MAX_TIME_MS   60
 #define MAX_TIME_MS_N (MAX_TIME_MS - MIN_TIME_MS)
 
-#define PEDAL_PIN     21
+#define PEDAL_PIN 21
+#define OCTAVE_UP_PIN 34
+#define OCTAVE_DOWN_PIN 35
 
-//find out the pins using a multimeter, starting from the first key
-//see the picture key_scheme.png to understand how to map the inputs and outputs
+int octave_shift = 0; // Variável para transposição de oitava
 
-//the following configuration is specific for PSR530
-//thanks Leandro Meucchi, from Argentina, by the PDF
-//take a look at the scheme detailed in PSR530.pdf and modify the following mapping according to the wiring of your keyboard
-#define PIN_A1  22
-#define PIN_A2  23
-#define PIN_A3  24
-#define PIN_A4  25
-#define PIN_A5  26
-#define PIN_A6  27
-#define PIN_A7  28
-#define PIN_A8  29
-#define PIN_A9  30
+// find out the pins using a multimeter, starting from the first key
+// see the picture key_scheme.png to understand how to map the inputs and outputs
+
+// the following configuration is specific for PSR530
+// thanks Leandro Meucchi, from Argentina, by the PDF
+// take a look at the scheme detailed in PSR530.pdf and modify the following mapping according to the wiring of your keyboard
+#define PIN_A1 22
+#define PIN_A2 23
+#define PIN_A3 24
+#define PIN_A4 25
+#define PIN_A5 26
+#define PIN_A6 27
+#define PIN_A7 28
+#define PIN_A8 29
+#define PIN_A9 30
 #define PIN_A10 31
 #define PIN_A11 32
 #define PIN_A12 33
 
-#define PIN_B1  40
-#define PIN_B2  41
-#define PIN_B3  42
-#define PIN_B4  43
-#define PIN_B5  44
-#define PIN_B6  45
-#define PIN_B7  46
-#define PIN_B8  47
-#define PIN_B9  48
+#define PIN_B1 40
+#define PIN_B2 41
+#define PIN_B3 42
+#define PIN_B4 43
+#define PIN_B5 44
+#define PIN_B6 45
+#define PIN_B7 46
+#define PIN_B8 47
+#define PIN_B9 48
 #define PIN_B10 49
 #define PIN_B11 50
 
 byte output_pins[] = {
-    PIN_B1, //C0
+    PIN_B1, // C0
     PIN_B1,
     PIN_B1,
     PIN_B1,
@@ -79,7 +88,7 @@ byte output_pins[] = {
     PIN_B1,
     PIN_B1,
     PIN_B1,
-    
+
     PIN_B2,
     PIN_B2,
     PIN_B2,
@@ -92,8 +101,8 @@ byte output_pins[] = {
     PIN_B2,
     PIN_B2,
     PIN_B2,
-    
-    PIN_B3, //C1
+
+    PIN_B3, // C1
     PIN_B3,
     PIN_B3,
     PIN_B3,
@@ -105,7 +114,7 @@ byte output_pins[] = {
     PIN_B3,
     PIN_B3,
     PIN_B3,
-    
+
     PIN_B4,
     PIN_B4,
     PIN_B4,
@@ -119,7 +128,7 @@ byte output_pins[] = {
     PIN_B4,
     PIN_B4,
     ///////
-    PIN_B5, //C2
+    PIN_B5, // C2
     PIN_B5,
     PIN_B5,
     PIN_B5,
@@ -131,7 +140,7 @@ byte output_pins[] = {
     PIN_B5,
     PIN_B5,
     PIN_B5,
-    
+
     PIN_B6,
     PIN_B6,
     PIN_B6,
@@ -144,8 +153,8 @@ byte output_pins[] = {
     PIN_B6,
     PIN_B6,
     PIN_B6,
-    
-    PIN_B7, //C3
+
+    PIN_B7, // C3
     PIN_B7,
     PIN_B7,
     PIN_B7,
@@ -157,7 +166,7 @@ byte output_pins[] = {
     PIN_B7,
     PIN_B7,
     PIN_B7,
-    
+
     PIN_B8,
     PIN_B8,
     PIN_B8,
@@ -170,8 +179,8 @@ byte output_pins[] = {
     PIN_B8,
     PIN_B8,
     PIN_B8,
-    
-    PIN_B9, //C4
+
+    PIN_B9, // C4
     PIN_B9,
     PIN_B9,
     PIN_B9,
@@ -183,7 +192,7 @@ byte output_pins[] = {
     PIN_B9,
     PIN_B9,
     PIN_B9,
-    
+
     PIN_B10,
     PIN_B10,
     PIN_B10,
@@ -196,11 +205,11 @@ byte output_pins[] = {
     PIN_B10,
     PIN_B10,
     PIN_B10,
-    
-    PIN_B11, //C5
+
+    PIN_B11, // C5
 };
 byte input_pins[] = {
-    PIN_A1, //C0
+    PIN_A1, // C0
     PIN_A2,
     PIN_A3,
     PIN_A4,
@@ -224,7 +233,7 @@ byte input_pins[] = {
     PIN_A10,
     PIN_A11,
     PIN_A12,
-    PIN_A1, //C1
+    PIN_A1, // C1
     PIN_A2,
     PIN_A3,
     PIN_A4,
@@ -248,7 +257,7 @@ byte input_pins[] = {
     PIN_A10,
     PIN_A11,
     PIN_A12,
-    PIN_A1, //C2
+    PIN_A1, // C2
     PIN_A2,
     PIN_A3,
     PIN_A4,
@@ -272,7 +281,7 @@ byte input_pins[] = {
     PIN_A10,
     PIN_A11,
     PIN_A12,
-    PIN_A1, //C3
+    PIN_A1, // C3
     PIN_A2,
     PIN_A3,
     PIN_A4,
@@ -296,7 +305,7 @@ byte input_pins[] = {
     PIN_A10,
     PIN_A11,
     PIN_A12,
-    PIN_A1, //C4
+    PIN_A1, // C4
     PIN_A2,
     PIN_A3,
     PIN_A4,
@@ -320,43 +329,42 @@ byte input_pins[] = {
     PIN_A10,
     PIN_A11,
     PIN_A12,
-    PIN_A1, //C5
-    PIN_A2
-};
+    PIN_A1, // C5
+    PIN_A2};
 
-//cheap keyboards often has the black keys softer or harder than the white ones
-//uncomment the next line to allow a soft correction
+// cheap keyboards often has the black keys softer or harder than the white ones
+// uncomment the next line to allow a soft correction
 #define BLACK_KEYS_CORRECTION
 
 #ifdef BLACK_KEYS_CORRECTION
 #define MULTIPLIER 192 // 127 is the central value (corresponding to 1.0)
 byte black_keys[] = {
-    0,1,0,1,0,0,1,0,1,0,1,0,
-    0,1,0,1,0,0,1,0,1,0,1,0,
-    0,1,0,1,0,0,1,0,1,0,1,0,
-    0,1,0,1,0,0,1,0,1,0,1,0,
-    0,1,0,1,0,0,1,0,1,0,1,0,
-    0
-};
+    0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0,
+    0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0,
+    0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0,
+    0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0,
+    0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0,
+    0};
 #endif
 
-//uncomment the next line to inspect the number of scans per seconds
-//#define DEBUG_SCANS_PER_SECOND
+// uncomment the next line to inspect the number of scans per seconds
+// #define DEBUG_SCANS_PER_SECOND
 
 /*
 426 cyles per second (2,35ms per cycle) using standard digitalWrite/digitalRead
 896 cyles per second (1,11ms per cycle) using DIO2 digitalWrite2/digitalRead2
 */
 
-//uncoment the next line to get text midi message at output
-//#define DEBUG_MIDI_MESSAGE
+// uncoment the next line to get text midi message at output
+// #define DEBUG_MIDI_MESSAGE
 
-byte          keys_state[KEYS_NUMBER];
+byte keys_state[KEYS_NUMBER];
 unsigned long keys_time[KEYS_NUMBER];
-boolean       signals[KEYS_NUMBER * 2];
-boolean       pedal_enabled;
+boolean signals[KEYS_NUMBER * 2];
+boolean pedal_enabled;
 
-void setup() {
+void setup()
+{
     Serial.begin(115200);
     pinMode(13, OUTPUT);
     digitalWrite(13, LOW);
@@ -376,6 +384,10 @@ void setup() {
     }
     pinMode(PEDAL_PIN, INPUT_PULLUP);
     pedal_enabled = digitalRead(PEDAL_PIN) != HIGH;
+
+    // Configura os botões de controle de oitava
+    pinMode(OCTAVE_UP_PIN, INPUT_PULLUP);
+    pinMode(OCTAVE_DOWN_PIN, INPUT_PULLUP);
 }
 
 void send_midi_event(byte status_byte, byte key_index, unsigned long time)
@@ -394,7 +406,8 @@ void send_midi_event(byte status_byte, byte key_index, unsigned long time)
     t -= MIN_TIME_MS;
     unsigned long velocity = 127 - (t * 127 / MAX_TIME_MS_N);
     byte vel = (((velocity * velocity) >> 7) * velocity) >> 7;
-    byte key = 36 + key_index;
+    byte key = 36 + key_index + (octave_shift * 12); // Ajusta a oitava
+
 #ifdef DEBUG_MIDI_MESSAGE
     char out[32];
     sprintf(out, "%02X %02X %03d %d", status_byte, key, vel, time);
@@ -406,7 +419,26 @@ void send_midi_event(byte status_byte, byte key_index, unsigned long time)
 #endif
 }
 
-void loop() {
+void loop()
+{
+
+    // Controle de oitava
+    if (digitalRead(OCTAVE_UP_PIN) == LOW)
+    {
+        octave_shift++;
+        if (octave_shift > 3)
+            octave_shift = 3; // Limite superior
+        delay(200);           // Debounce
+    }
+
+    if (digitalRead(OCTAVE_DOWN_PIN) == LOW)
+    {
+        octave_shift--;
+        if (octave_shift < -3)
+            octave_shift = -3; // Limite inferior
+        delay(200);            // Debounce
+    }
+    
 #ifdef DEBUG_SCANS_PER_SECOND
     static unsigned long cycles = 0;
     static unsigned long start = 0;
@@ -425,7 +457,7 @@ void loop() {
     {
         pedal = digitalRead2(PEDAL_PIN);
     }
-   
+
     boolean *s = signals;
     for (byte i = 0; i < KEYS_NUMBER * 2; i++)
     {
@@ -436,9 +468,9 @@ void loop() {
         digitalWrite2(output_pin, HIGH);
     }
 
-    byte          *state  = keys_state;
-    unsigned long *ktime  = keys_time;
-    boolean       *signal = signals;
+    byte *state = keys_state;
+    unsigned long *ktime = keys_time;
+    boolean *signal = signals;
     for (byte key = 0; key < KEYS_NUMBER; key++)
     {
         for (byte state_index = 0; state_index < 2; state_index++)
