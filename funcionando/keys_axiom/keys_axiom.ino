@@ -29,13 +29,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define KEY_SUSTAINED         4
 #define KEY_SUSTAINED_RESTART 5
 
-//#define MIN_TIME_MS   7
-//#define MAX_TIME_MS   70
-#define MIN_TIME_MS   5
-//#define MAX_TIME_MS   50
-
-//#define MIN_TIME_MS   6
-//#define MAX_TIME_MS   60
+#define MIN_TIME_MS   3
+#define MAX_TIME_MS   150
 #define MAX_TIME_MS_N (MAX_TIME_MS - MIN_TIME_MS)
 
 #define PEDAL_PIN     21
@@ -331,7 +326,7 @@ byte input_pins[] = {
 
 //cheap keyboards often has the black keys softer or harder than the white ones
 //uncomment the next line to allow a soft correction
-#define BLACK_KEYS_CORRECTION
+//#define BLACK_KEYS_CORRECTION
 
 #ifdef BLACK_KEYS_CORRECTION
 #define MULTIPLIER 192 // 127 is the central value (corresponding to 1.0)
