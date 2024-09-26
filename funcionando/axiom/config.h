@@ -27,17 +27,17 @@
 #define PIN_A11 32
 #define PIN_A12 33
 
-#define PIN_B1 40
-#define PIN_B2 41
-#define PIN_B3 42
-#define PIN_B4 43
-#define PIN_B5 44
-#define PIN_B6 45
-#define PIN_B7 46
-#define PIN_B8 47
-#define PIN_B9 48
-#define PIN_B10 49
-#define PIN_B11 50
+#define PIN_B1 34
+#define PIN_B2 35
+#define PIN_B3 36
+#define PIN_B4 37
+#define PIN_B5 38
+#define PIN_B6 39
+#define PIN_B7 40
+#define PIN_B8 41
+#define PIN_B9 42
+#define PIN_B10 43
+#define PIN_B11 44
 
 byte output_pins[] = {
   PIN_B1,  //C0
