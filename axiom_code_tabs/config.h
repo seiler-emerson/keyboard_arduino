@@ -15,29 +15,29 @@
 #define PEDAL_PIN 21
 
 #define PIN_A1 22
-#define PIN_A2 23
-#define PIN_A3 24
-#define PIN_A4 25
-#define PIN_A5 26
-#define PIN_A6 27
-#define PIN_A7 28
-#define PIN_A8 29
-#define PIN_A9 30
-#define PIN_A10 31
-#define PIN_A11 32
-#define PIN_A12 33
+#define PIN_A2 24
+#define PIN_A3 26
+#define PIN_A4 28
+#define PIN_A5 30
+#define PIN_A6 32
+#define PIN_A7 34
+#define PIN_A8 36
+#define PIN_A9 38
+#define PIN_A10 40
+#define PIN_A11 42
+#define PIN_A12 44
 
-#define PIN_B1 34
-#define PIN_B2 35
-#define PIN_B3 36
-#define PIN_B4 37
-#define PIN_B5 38
-#define PIN_B6 39
-#define PIN_B7 40
-#define PIN_B8 41
-#define PIN_B9 42
-#define PIN_B10 43
-#define PIN_B11 44
+#define PIN_B1 23
+#define PIN_B2 25
+#define PIN_B3 27
+#define PIN_B4 29
+#define PIN_B5 31
+#define PIN_B6 33
+#define PIN_B7 35
+#define PIN_B8 37
+#define PIN_B9 39
+#define PIN_B10 41
+#define PIN_B11 43
 
 byte output_pins[] = {
   PIN_B1,  //C0
@@ -305,8 +305,7 @@ boolean pedal_enabled;
 byte pedal = LOW;
 
 void iniciarConfiguracoes() {
-  Serial.begin(115200);
-  pinMode(13, OUTPUT);
+  Serial.begin(31250); // 115200 for hairless - 31250 for MOCO lufa  pinMode(13, OUTPUT);
   digitalWrite(13, LOW);
   int i;
   for (i = 0; i < KEYS_NUMBER; i++) {

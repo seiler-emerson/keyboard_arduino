@@ -5,7 +5,7 @@
 #include "states.h"        // Funções para gerenciar os estados das teclas
 
 void setup() {
-    Serial.begin(115200);
+    Serial.begin(31250); // 115200 for hairless - 31250 for MOCO lufa
     pinMode(13, OUTPUT);
     digitalWrite(13, LOW);
 
