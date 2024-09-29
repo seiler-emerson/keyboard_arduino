@@ -1,5 +1,4 @@
-// Definições de pinos e constantes globais
-
+// ========= TECLAS =========
 #define KEYS_NUMBER 61
 #define KEY_OFF 0
 #define KEY_START 1
@@ -8,12 +7,15 @@
 #define KEY_SUSTAINED 4
 #define KEY_SUSTAINED_RESTART 5
 
+// ========= SENSIBILIDADE TECLAS =========
 #define MIN_TIME_MS 3
 #define MAX_TIME_MS 150
 #define MAX_TIME_MS_N (MAX_TIME_MS - MIN_TIME_MS)
 
+// DEFINIÇÃO PINO PEDAL
 #define PEDAL_PIN 21
 
+// DEFINIÇÃO PINOS MATRIZ DO TECLADO
 #define PIN_A1 22
 #define PIN_A2 24
 #define PIN_A3 26
@@ -304,7 +306,31 @@ boolean signals[KEYS_NUMBER * 2];
 boolean pedal_enabled;
 byte pedal = LOW;
 
-void iniciarConfiguracoes() {
+// ========= POTENCIOMETROS =========
+const int N_POTS = 3; //* número total de pots (slide e rotativo)
+const int POT_ARDUINO_PIN[N_POTS] = {A0, A1, A2}; //* pinos de cada pot conectado diretamente ao Arduino (AO = modulation wheel  | A1 = pitchbend)
+byte MESSAGE_VAL[N_BUTTONS] = { 0, 1, 7 }; //* Número CC que você deseja enviar, na ordem correspondente aos potenciometros acima
+
+int potCState[N_POTS] = {0}; // estado atual da porta analogica
+int potPState[N_POTS] = {0}; // estado previo da porta analogica
+int potVar = 0; // variacao entre o valor do estado previo e o atual da porta analogica
+
+int midiCState[N_POTS] = {0}; // Estado atual do valor midi
+int midiPState[N_POTS] = {0}; // Estado anterior do valor midi
+const int TIMEOUT = 300; //* quantidade de tempo em que o potenciometro sera lido apos ultrapassar o varThreshold
+const int varThreshold = 100; //* threshold para a variacao no sinal do potenciometro
+boolean potMoving = true; // se o potenciometro esta se movendo
+unsigned long PTime[N_POTS] = {0}; // tempo armazenado anteriormente
+unsigned long timer[N_POTS] = {0}; // armazena o tempo que passou desde que o timer foi zerado
+boolean pit =false;
+boolean mod=false;
+byte cc = 1; //* O mais baixo MIDI CC a ser usado
+
+// ========= DEBUG =========
+//#define DEBUG_SCANS_PER_SECOND
+
+void startConfig() {
+  // Serial.begin(115200); // 115200 for hairless - 31250 for MOCO lufa  pinMode(13, OUTPUT);
   Serial.begin(31250); // 115200 for hairless - 31250 for MOCO lufa  pinMode(13, OUTPUT);
   digitalWrite(13, LOW);
   int i;

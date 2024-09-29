@@ -1,4 +1,4 @@
-void atualizarEstados() {
+void updateStates() {
   byte *state = keys_state;
   unsigned long *ktime = keys_time;
   boolean *signal = signals;

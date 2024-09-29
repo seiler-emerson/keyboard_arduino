@@ -23,3 +23,17 @@ void send_midi_event(byte status_byte, byte key_index, unsigned long time) {
   Serial.write(vel);
 #endif
 }
+
+void send_midi_eventcc(byte status_byte, byte key_index, unsigned long time)
+{
+unsigned long t = time;
+#ifdef DEBUG_MIDI_MESSAGE
+char out[32];
+sprintf(out, "%02X %02X %03d %d", status_byte, key_index, vel, t);
+Serial.println(out);
+#else
+Serial.write(status_byte);
+Serial.write(key_index);
+Serial.write(t);
+#endif
+}

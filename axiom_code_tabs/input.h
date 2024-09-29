@@ -1,4 +1,4 @@
-void lerEntradas() {
+void readInputs() {
   // byte pedal = LOW;
   if (pedal_enabled) {
     pedal = digitalRead2(PEDAL_PIN);
@@ -15,7 +15,7 @@ void lerEntradas() {
 }
 
 #ifdef DEBUG_SCANS_PER_SECOND
-void contarCiclos() {
+void countCicles() {
   static unsigned long cycles = 0;
   static unsigned long start = 0;
   static unsigned long current = 0;
