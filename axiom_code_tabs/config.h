@@ -309,7 +309,7 @@ byte pedal = LOW;
 // ========= POTENCIOMETROS =========
 const int N_POTS = 3; //* número total de pots (slide e rotativo)
 const int POT_ARDUINO_PIN[N_POTS] = {A0, A1, A2}; //* pinos de cada pot conectado diretamente ao Arduino (AO = modulation wheel  | A1 = pitchbend)
-byte MESSAGE_VAL[N_BUTTONS] = { 0, 1, 7 }; //* Número CC que você deseja enviar, na ordem correspondente aos potenciometros acima
+byte MESSAGE_VAL[N_POTS] = { 0, 1, 7 }; //* Número CC que você deseja enviar, na ordem correspondente aos potenciometros acima
 
 int potCState[N_POTS] = {0}; // estado atual da porta analogica
 int potPState[N_POTS] = {0}; // estado previo da porta analogica

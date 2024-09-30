@@ -1,3 +1,5 @@
+// Salmos 150
+
 #include <DIO2.h>          // Biblioteca DIO2 para I/O rápido
 #include "config.h"        // Definições de pinos e variáveis globais
 #include "input.h"         // Leitura das entradas do teclado e pedal
@@ -20,5 +22,5 @@ void loop() {
     
     readInputs();           // Lê o estado das teclas e do pedal
     updateStates();      // Atualiza os estados das teclas e envia MIDI
-    potentiometers();
+    // potentiometers();
 }
